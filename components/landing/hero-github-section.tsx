@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 
+const PROFILE_IMAGE_URL =
+  "https://res.cloudinary.com/dlhyawc5e/image/upload/v1775563035/me_llgvug.png";
+
 type GitHubRepoRow = {
   name: string;
   stars: string;
@@ -84,7 +87,7 @@ export default function HeroGitHubSection({
     <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-54 pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0">
       <div className="w-full max-w-234.25 lg:w-234.25 flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
         <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-          <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[24px] xs:text-[28px] sm:text-[36px] md:text-[52px] lg:text-[80px] font-normal leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-24 font-serif px-2 sm:px-4 md:px-0">
+          <div className="w-full max-w-[748.71px] lg:w-[748.71px] text-center flex justify-center flex-col text-[#37322F] text-[48px] xs:text-[54px] sm:text-[44px] md:text-[52px] lg:text-[80px] font-normal leading-[1.05] sm:leading-[1.12] md:leading-[1.2] lg:leading-24 font-serif px-2 sm:px-4 md:px-0">
             Hi, I'm Josiah - I build
             <br />
             software people rely on
@@ -93,6 +96,15 @@ export default function HeroGitHubSection({
             I care about clean code, thoughtful product decisions,
             <br className="hidden sm:block" />
             and shipping web, mobile, and backend systems that last.
+          </div>
+          <div className="w-full flex justify-center items-center pt-1 sm:pt-2">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-30 md:h-30 rounded-full overflow-hidden border border-[#D9D3CE] shadow-[0px_6px_18px_rgba(55,50,47,0.16)] bg-white">
+              <img
+                src={PROFILE_IMAGE_URL}
+                alt="Josiah profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
