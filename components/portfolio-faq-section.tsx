@@ -1,0 +1,133 @@
+"use client";
+
+import { useState } from "react";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQItem[] = [
+  {
+    question: "Who are you and what do you focus on?",
+    answer:
+      "I am Josiah Ok, a software engineer focused on building dependable digital products across web, backend systems, and developer tooling with clear user impact.",
+  },
+  {
+    question: "What stack do you work with most?",
+    answer:
+      "My core stack includes TypeScript, React, Next.js, Node.js, PostgreSQL, and MERN workflows. I also build APIs, handle data modeling, and ship scalable backend services.",
+  },
+  {
+    question: "What kind of projects have you built?",
+    answer:
+      "I have built education and communication platforms, desktop presentation tools, and reusable product systems, including projects like Betaforge, MessageAbcs, Wingrid, and SongCast.",
+  },
+  {
+    question: "Do you work solo or with teams?",
+    answer:
+      "Both. I can own delivery end-to-end independently and also collaborate effectively with designers, engineers, and product stakeholders in team environments.",
+  },
+  {
+    question: "What can I expect if we work together?",
+    answer:
+      "You can expect structured communication, maintainable code, practical architecture decisions, and delivery focused on measurable product outcomes.",
+  },
+  {
+    question: "How do we get started?",
+    answer:
+      "Reach out through the contact section with your goals, timeline, and scope. I will follow up with a clear implementation path and recommended next steps.",
+  },
+];
+
+function ChevronDownIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m6 9 6 6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default function PortfolioFAQSection() {
+  const [openItems, setOpenItems] = useState<number[]>([]);
+
+  const toggleItem = (index: number) => {
+    setOpenItems((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index],
+    );
+  };
+
+  return (
+    <div className="w-full flex justify-center items-start">
+      <div className="flex-1 px-4 md:px-12 py-16 md:py-20 flex flex-col lg:flex-row justify-start items-start gap-6 lg:gap-12">
+        {/* Left Column - Header */}
+        <div className="w-full lg:flex-1 flex flex-col justify-center items-start gap-4 lg:py-5">
+          <div className="w-full flex flex-col justify-center text-[#49423D] font-semibold leading-tight md:leading-11 font-sans text-4xl tracking-tight">
+            Questions people ask me
+          </div>
+          <div className="w-full text-[#605A57] text-base font-normal leading-7 font-sans">
+            Learn more about my process, stack, and
+            <br className="hidden md:block" />
+            how I approach product development.
+          </div>
+        </div>
+
+        {/* Right Column - FAQ Items */}
+        <div className="w-full lg:flex-1 flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col">
+            {faqData.map((item, index) => {
+              const isOpen = openItems.includes(index);
+
+              return (
+                <div
+                  key={index}
+                  className="w-full border-b border-[rgba(73,66,61,0.16)] overflow-hidden"
+                >
+                  <button
+                    onClick={() => toggleItem(index)}
+                    className="w-full px-5 py-4.5 flex justify-between items-center gap-5 text-left hover:bg-[rgba(73,66,61,0.02)] transition-colors duration-200"
+                    aria-expanded={isOpen}
+                  >
+                    <div className="flex-1 text-[#49423D] text-base font-medium leading-6 font-sans">
+                      {item.question}
+                    </div>
+                    <div className="flex justify-center items-center">
+                      <ChevronDownIcon
+                        className={`w-6 h-6 text-[rgba(73,66,61,0.60)] transition-transform duration-300 ease-in-out ${
+                          isOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </div>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="px-5 pb-4.5 text-[#605A57] text-sm font-normal leading-6 font-sans">
+                      {item.answer}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
